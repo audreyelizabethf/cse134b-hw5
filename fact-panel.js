@@ -10,7 +10,7 @@
 class FactPanel extends HTMLElement {
     connectedCallback() {
         this.heading = document.createElement("h3")
-        this.heading.textContent = "Useless Fact";
+        this.heading.textContent = "Did you know...";
 
         this.factText = document.createElement("p");
         this.factText.className = "fact-text";
