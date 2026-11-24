@@ -48,7 +48,31 @@ class FactPanel extends HTMLElement {
     showNext() {
         this.index = (this.index + 1) % sampleFacts.length;
         this.render();
+        this.updateCompact();
+    }
+
+    static observedAttributes = ["compact"];
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "compact") {
+            this.updateCompact();
+        }
+    }
+
+    updateCompact() {
+        if(!this.details) return;
+        this.details.hidden = this.hasAttribute("compact");
     }
 }
 
 customElements.define("fact-panel", FactPanel);
+
+const panel = document.querySelector("fact-panel");
+const compactToggle = document.querySelector("#compact-toggle");
+
+compactToggle.hidden = false;
+
+compactToggle.addEventListener("click", () => {
+    panel.toggleAttribute("compact");
+    compactToggle.setAttribute("aria-pressed", panel.hasAttribute("compact"));
+});
