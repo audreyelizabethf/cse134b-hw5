@@ -1,0 +1,80 @@
+---
+permalink: about.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About Audrey Fernandez, the maker behind the ceramics and crochet pieces.">
+  <title>About | Audrey's Studio</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js" defer></script>
+</head>
+<body>
+    <header>
+    <a href="index.html">
+        <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Audrey's Studio logo">
+            <circle cx="20" cy="20" r="16" fill="#e8a0bf" stroke="#8a3b62" stroke-width="2"/>
+        </svg>        
+        Audrey's Studio
+    </a>
+    <nav aria-label="Main">
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ceramics.html">Ceramics</a></li>
+        <li><a href="crochet.html">Crochet</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="commissions.html">Commissions</a></li>
+        <li><a href="form-with-js.html">Contact</a></li>
+        <li><a href="form-no-js.html">Contact (no JS)</a></li>
+        </ul>
+    </nav>
+    <button type="button" id="theme-toggle" hidden>Switch to dark theme</button>
+    </header>
+
+    <main>
+        <h1>About the maker</h1>
+
+        <section class="panel panel-accent" aria-labelledby="bio.heading">
+            <h2 id="bio-heading">Hi, I'm Audrey</h2>
+            <img src="images/placeholder.svg" alt="TODO: Photo of me at a pottery wheel or with yarn">
+            <p>TODO: Write bio, how did I get into ceramics and crochet?</p>
+            <p>
+                Based in <span>San Diego, CA</span><br>
+                Started Ceramics in: 2026<br>
+                Started Crocheting in: 2021
+            </p>
+        </section>
+
+        <section class="panel panel-accent2" aria-labelledby="wip-heading">
+            <h2 id="wip-heading">Currently working on</h2>
+            <ul>
+                <li>
+                    <label for="wip-blanket">Granny square blanket</label>
+                    <progress id="wip-blanket" max="100" value="60">60%</progress>
+                </li>
+                <li>
+                    <label for="wip-mugs">Mug set</label>
+                    <progress id="wip-mugs" max="6" value="2">2 of 6</progress>
+                </li>
+            </ul>
+        </section>
+
+        <section class="panel panel-accent3" aria-labelledby="irl-heading">
+            <h2 id="irl-heading">Where to find my work</h2>
+            <h3>Upcoming Markets</h3>
+            <img src="images/placeholder.svg" alt="TODO: Flyer for upcoming market">
+        </section>
+
+        <section class="panel panel-accent4" aria-labelledby="links-heading">
+            <h2 id="links-heading">Find me online</h2>
+            <ul>
+                <li><a href="https://www.instagram.com/audrey.crochets">Instagram</a></li>
+            </ul>
+        </section>
+    </main>
+    {% include "footer.njk" %}
+</body>
+</html>
