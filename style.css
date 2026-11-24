@@ -357,7 +357,7 @@ fact-panel {
 }
 
 fact-panel {
-    display: lock;
+    display: block;
     max-width: 40rem;
     margin: 1rem auto;
     padding: 1.25rem 1.5rem;
