@@ -1,5 +1,13 @@
-class FactPanel extends HTMLElement {
+ const sampleFacts = [
+        {text: "Unlike knitting, true crochet has never been fully replicated by machines, which means crochet products are always made by hand.", source:"Crochet facts"},
+        {text: "\"Amigurumi\" is the Japanese word for small crocheted or knitted stuffed toys.", source:"Crochet facts"},
+        
+        {text: "Clay shrinks as it dries and fires, often by around 10-15%.", source:"Pottery facts"},
+        {text: "Stoneware is usually fired to around 2,200°F or hotter", source:"Pottery facts"},
+    ];
     
+
+class FactPanel extends HTMLElement {
     connectedCallback() {
         this.heading = document.createElement("h3")
         this.heading.textContent = "Useless Fact";
@@ -24,7 +32,22 @@ class FactPanel extends HTMLElement {
         this.appendChild(this.nextButton);
         this.appendChild(this.status);
 
-        this.factText.textContent = "Test if facts will show up (coming soon)"
+        this.index = 0;
+        this.nextButton.addEventListener("click", () => this.showNext());
+
+        this.render();
+    }
+
+    render() {
+        const fact = sampleFacts[this.index];
+        this.factText.textContent = fact.text;
+        this.details.textContent = `Source: ${fact.source}`;
+        this.status.textContent = `Fact ${this.index + 1} of ${sampleFacts.length}`;
+    }
+
+    showNext() {
+        this.index = (this.index + 1) % sampleFacts.length;
+        this.render();
     }
 }
 
