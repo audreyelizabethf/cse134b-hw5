@@ -4,7 +4,7 @@
    | Field | Value |
    |---|---|
    | Repository URL | https://github.com/audreyelizabethf/cse134b-hw5 |
-   | Part 2 Deployed URL | https://audreys-studio-hw5.netlify.app/ |
+   | Deployed Site | https://audreys-studio-hw5.netlify.app/ |
 
 ## SSG exercise
 - Folder: `ssg-exercise/`
