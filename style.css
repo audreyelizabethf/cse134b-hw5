@@ -394,9 +394,12 @@ fact-panel:not(:defined) {
     text-align: center;
 }
 
-#compact-toggle[aria-pressed="true"] {
+#compact-toggle {
     display: block;
     margin: 0 auto 1rem;
+}
+
+#compact-toggle[aria-pressed="true"] {
     font-weight: bold;
     outline: 2px solid var(--color-link);
 }
