@@ -17,7 +17,7 @@ class FactPanel extends HTMLElement {
         this.factText.className = "fact-text";
 
         this.details = document.createElement("p");
-        this.details.className - "fact-details";
+        this.details.className = "fact-details";
 
         this.nextButton = document.createElement("button");
         this.nextButton.type = "button";

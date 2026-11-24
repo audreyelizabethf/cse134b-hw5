@@ -353,7 +353,7 @@ input, textarea {
 fact-panel {
     --fact-bg: var(--color-accent);
     --fact-text: var(--color-text);
-    --fact-accent: var(var(--color-link))
+    --fact-accent: var(--color-link);
 }
 
 fact-panel {
@@ -362,7 +362,7 @@ fact-panel {
     margin: 1rem auto;
     padding: 1.25rem 1.5rem;
     border-radius: 10px;
-    border-left: 6px solid var(--fact-accent, #8a3b62);;
+    border-left: 6px solid var(--fact-accent, #8a3b62);
     background-color: var(--fact-bg, #ffe2eb);
     color: var(--fact-text, #48273a);
     text-align: center;
@@ -390,9 +390,6 @@ fact-panel:not(:defined) {
     display: none;
 }
 
-.fact-section {
-    text-align: center;
-}
 
 #compact-toggle {
     display: block;
