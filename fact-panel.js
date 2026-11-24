@@ -100,10 +100,41 @@ customElements.define("fact-panel", FactPanel);
 
 const panel = document.querySelector("fact-panel");
 const compactToggle = document.querySelector("#compact-toggle");
+const MODE_KEY = "hw5-fact-panel-mode";
 
+function applyMode(mode) {
+    panel.toggleAttribute("compact", mode === "compact");
+    compactToggle.setAttribute("aria-pressed", mode === "compact");
+}
+
+function loadMode() {
+    try {
+        const saved = localStorage.getItem(MODE_KEY);
+        if (saved === "compact" || saved === "expanded") {
+            return saved;
+        }
+    }
+    catch (error) {
+        console.warn("Could not read the fact panel preference.", error);
+    }
+    return "expanded";
+}
+
+function saveMode(mode) {
+    try {
+        localStorage.setItem(MODE_KEY, mode);
+    }
+    catch (error) {
+        console.warn("Could not save the fact panel preference.", error);
+    }
+}
+
+applyMode(loadMode());
 compactToggle.hidden = false;
 
+
 compactToggle.addEventListener("click", () => {
-    panel.toggleAttribute("compact");
-    compactToggle.setAttribute("aria-pressed", panel.hasAttribute("compact"));
+    const newMode = panel.hasAttribute("compact") ? "expanded" : "compact";
+    applyMode(newMode);
+    saveMode(newMode);
 });

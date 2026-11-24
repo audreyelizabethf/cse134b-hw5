@@ -163,10 +163,7 @@ button {
     font-family: var(--font-body);
 }
 
-#compact-toggle[aria-pressed="true"] {
-    font-weight: bold;
-    outline: 2px solid var(--color-link);
-}
+
 /* CARDS */
 
 .new-pieces {
@@ -350,6 +347,56 @@ input, textarea {
   border-left: 4px solid var(--color-error);
   color: var(--color-error);
   font-weight: bold;
+}
+
+/* FUN FACTS */
+fact-panel {
+    --fact-bg: var(--color-accent);
+    --fact-text: var(--color-text);
+    --fact-accent: var(var(--color-link))
+}
+
+fact-panel {
+    display: lock;
+    max-width: 40rem;
+    margin: 1rem auto;
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    border-left: 6px solid var(--fact-accent, #8a3b62);;
+    background-color: var(--fact-bg, #ffe2eb);
+    color: var(--fact-text, #48273a);
+    text-align: center;
+}
+
+fact-panel .fact-text {
+    font-size: 1.15rem;
+}
+
+fact-panel .fact-details,
+fact-panel .fact-status {
+    font-size: 0.9em;
+}
+
+fact-panel .fact-details {
+    font-style: italic;
+}
+
+fact-panel .fact-status.is-error {
+    color: var(--color-error, #b3261e);
+    font-weight: bold;
+}
+
+fact-panel:not(:defined) {
+    display: none;
+}
+
+.fact-section {
+    text-align: center;
+}
+
+#compact-toggle[aria-pressed="true"] {
+    font-weight: bold;
+    outline: 2px solid var(--color-link);
 }
 
 /* FOOTER */
