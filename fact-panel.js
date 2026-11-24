@@ -1,12 +1,13 @@
- const sampleFacts = [
-        {text: "Unlike knitting, true crochet has never been fully replicated by machines, which means crochet products are always made by hand.", source:"Crochet facts"},
-        {text: "\"Amigurumi\" is the Japanese word for small crocheted or knitted stuffed toys.", source:"Crochet facts"},
+//  const sampleFacts = [
+//         {text: "Unlike knitting, true crochet has never been fully replicated by machines, which means crochet products are always made by hand.", source:"Crochet facts"},
+//         {text: "\"Amigurumi\" is the Japanese word for small crocheted or knitted stuffed toys.", source:"Crochet facts"},
         
-        {text: "Clay shrinks as it dries and fires, often by around 10-15%.", source:"Pottery facts"},
-        {text: "Stoneware is usually fired to around 2,200°F or hotter", source:"Pottery facts"},
-    ];
-    
+//         {text: "Clay shrinks as it dries and fires, often by around 10-15%.", source:"Pottery facts"},
+//         {text: "Stoneware is usually fired to around 2,200°F or hotter", source:"Pottery facts"},
+//     ];
 
+const FACT_URL = "https://uselessfacts.jsph.pl/api/v2/facts/random?language=en";
+    
 class FactPanel extends HTMLElement {
     connectedCallback() {
         this.heading = document.createElement("h3")
@@ -32,23 +33,53 @@ class FactPanel extends HTMLElement {
         this.appendChild(this.nextButton);
         this.appendChild(this.status);
 
-        this.index = 0;
-        this.nextButton.addEventListener("click", () => this.showNext());
+        this.count = 0;
+        this.loading = false;
 
-        this.render();
-    }
+        this.nextButton.addEventListener("click", () => this.loadFact());
 
-    render() {
-        const fact = sampleFacts[this.index];
-        this.factText.textContent = fact.text;
-        this.details.textContent = `Source: ${fact.source}`;
-        this.status.textContent = `Fact ${this.index + 1} of ${sampleFacts.length}`;
-    }
-
-    showNext() {
-        this.index = (this.index + 1) % sampleFacts.length;
-        this.render();
         this.updateCompact();
+        this.loadFact();
+    }
+
+    async loadFact() {
+        if (this.loading) return;
+        this.loading = true;
+        this.nextButton.setAttribute("aria-disabled", "true");
+        this.status.classList.remove("is-error");
+        this.status.textContent = "Loading a new fact...";
+
+        try {
+            const response = await fetch(FACT_URL);
+
+            if(!response.ok) {
+                throw new Error(`HTTP status ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (typeof data?.text !== "string" || data.text.trim() === "" || typeof data?.source !== "string") {
+                throw new Error("Unexpected response format.");
+            }
+
+            this.count = this.count + 1;
+            this.factText.textContent = data.text;
+            this.details.textContent = `Source: ${data.source}`;
+            this.status.textContent = `New fact loaded (${this.count} this visit).`;
+            this.nextButton.textContent = "Next fact";
+        }
+
+        catch (error) {
+            console.error("Could not load a fact.", error);
+            this.status.textContent = "Sorry, we couldn't load a fact. Check your connection and try again.";
+            this.status.classList.add("is-error");
+            this.nextButton.etxtContent = "Try again";
+        }
+
+        finally {
+            this.loading = false;
+            this.nextButton.removeAttribute("aria-disabled");
+        }
     }
 
     static observedAttributes = ["compact"];
