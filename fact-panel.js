@@ -73,7 +73,7 @@ class FactPanel extends HTMLElement {
             console.error("Could not load a fact.", error);
             this.status.textContent = "Sorry, we couldn't load a fact. Check your connection and try again.";
             this.status.classList.add("is-error");
-            this.nextButton.etxtContent = "Try again";
+            this.nextButton.textContent = "Try again";
         }
 
         finally {
