@@ -395,6 +395,8 @@ fact-panel:not(:defined) {
 }
 
 #compact-toggle[aria-pressed="true"] {
+    display: block;
+    margin: 0 auto 1rem;
     font-weight: bold;
     outline: 2px solid var(--color-link);
 }
